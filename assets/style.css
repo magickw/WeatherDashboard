@@ -1,0 +1,27 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    background-image: url(https://source.unsplash.com/random/?city);
+  }
+
+.searchBtn {
+    border-right: 10px;
+    padding-right: 5px;
+}
+
+.locationBtn {
+    border-left: 10px;
+    padding-left: 5px;
+}
+
+
+
+
+footer {
+    border-top: 10px;
+    padding: 20px;
+    border-bottom: 10px;
+    text-align: center;
+  
+  }
