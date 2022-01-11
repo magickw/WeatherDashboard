@@ -27,7 +27,7 @@ $(".searchBtn").on("click", function(event) {
 });
 
 //Clear button event listener to clear the search history
-$(".clearBtn").on('click', function() {
+$(".clearBtn").on("click", function() {
     localStorage.clear();
   })
 
@@ -75,34 +75,15 @@ function getWeather(cityName){
                  return uvResponse.json();
              })
              .then(function(uvResponse){
-                let currentUvIndex = uvResponse.current.uvi;
-                uvIndexEl.text("UV Index: " + currentUvIndex);
-                if (currentUvIndex < 2) {
-                    uvIndexEl.addClass("background-color", "green")
-                    uvIndexEl.removeClass("background-color", "orange")
-                    uvIndexEl.removeClass("background-color", "yellow")
-                    uvIndexEl.removeClass("background-color", "red")
-            
-                  } else if (currentUvIndex >= 2 && currentUvIndex < 5) {
-                    uvIndexEl.addClass("background-color", "yellow")
-                    uvIndexEl.removeClass("background-color", "green")
-                    uvIndexEl.removeClass("background-color", "orange")
-                    uvIndexEl.removeClass("background-color", "red")
-            
-                  } else if (currentUvIndex >= 5 && currentUvIndex < 8) {
-                    uvIndexEl.addClass("background-color", "orange")
-                    uvIndexEl.removeClass("background-color", "green")
-                    uvIndexEl.removeClass("background-color", "yellow")
-                    uvIndexEl.removeClass("background-color", "red")
-            
-                  } else {
-                    uvIndexEl.addClass("background-color", "red")
-                    uvIndexEl.removeClass("background-color", "green")
-                    uvIndexEl.removeClass("background-color", "orange")
-                    uvIndexEl.removeClass("background-color", "yellow")
-
-                }
-                
+                 //Checks UV conditions
+                var uvConditions;
+                if (uvResponse.current.uvi < 3) {
+                    uvConditions = "uv-favorable";}
+                    else if (uvResponse.current.uvi < 6) {
+                        uvConditions = "uv-moderate";} else {
+                            uvConditions = "uv-severe";
+                        }
+            uvIndexEl.text("UV Index: " + uvResponse.current.uvi);
 
                 //Remove forecast then render it
                 let prevCardEl = document.querySelectorAll(".card-panel")
@@ -125,7 +106,7 @@ function getWeather(cityName){
 
 // Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    let fiveDayCardEl = $("<div>").addClass("card-panel teal");
+    let fiveDayCardEl = $("<div>").addClass("card-panel justify-content-space-evenly");
     let cardDate = $("<h4>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
