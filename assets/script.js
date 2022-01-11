@@ -78,7 +78,6 @@ function getWeather(cityName){
              .then(function(uvResponse){
                 $('.badge').remove();
                 let uvIndex = $('<span>');
-                uvIndex.addClass('badge red')
                 uvIndex.text(uvResponse.current.uvi);
                 uvIndexEl.append(uvIndex);
 
@@ -118,7 +117,7 @@ function getWeather(cityName){
 
 function createForecast(date, icon, temp, humidity, windSpeed) {
     let fiveDayCardEl = $("<div>").addClass("card-panel teal");
-    let cardDate = $("<h3>").addClass("card-title");
+    let cardDate = $("<h4>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
     let cardHumidity = $("<p>").addClass("card-text");
@@ -129,7 +128,7 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     cardIcon.attr("src", icon);
     cardTemp.text(`Temp: ${temp} °F`);
     cardHumidity.text(`Humidity: ${humidity}%`);
-    cardSpeed.text(`Humidity: ${windSpeed} MPH`);
+    cardSpeed.text(`Wind: ${windSpeed} MPH`);
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardSpeed);
 }
 

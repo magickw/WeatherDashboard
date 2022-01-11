@@ -11,14 +11,19 @@ body {
     background: darkslategrey;
   }
 
-.current-date {
+.currentDate {
     color:rgb(10, 10, 10);
+    font-size: 20px;
 }
 
-.city-name {
-  font-size: 30px;
+.cityName {
+  font-size: 25px;
 }
 
+.forcast-cards {
+  display: flex;
+  flex-direction: row;
+}
 
 footer {
     border-top: 10px;
