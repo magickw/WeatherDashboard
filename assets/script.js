@@ -27,7 +27,7 @@ $(".searchBtn").on("click", function(event) {
 });
 
 //Clear button event listener to clear the search history
-$("clearBtn").on('click', function(event) {
+$(".clearBtn").on('click', function() {
     localStorage.clear();
   })
 
@@ -54,20 +54,20 @@ function getWeather(cityName){
         return response.json();
       })
       .then(function(response){
-          //Gets the date from our data
+          //Get the searched city's data
           cityNameEl.text(response.name + " (" + getDate(response.dt) + ") ");
           let weatherIcon = response.weather[0].icon;
-          //Gets weather icons from api request
+          //Get weather icons from api request
           weatherIconEl.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
           weatherIconEl.attr("alt", response.weather[0].description);
           //Convert temp from deg K to deg F
           tempEl.text("Temperature: " + k2F(response.main.temp) + " °F");
           humidityEl.text("Humidity: " + response.main.humidity + "%");
           windSpeedEl.text("Wind Speed: " + response.wind.speed + " MPH");
-          //latitude and longitude of current-city are needed in order to fetch uv index data
+          //Latitude and longitude of current-city are needed in order to fetch uv index data
            let lat = response.coord.lat;
            let lon = response.coord.lon;
-           //uvIndex api url
+           //UV Index api url
            let uvIndexQueryUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly" + "&appid=" + apiKey;
            console.log(uvIndexQueryUrl);
            fetch(uvIndexQueryUrl)
@@ -75,10 +75,36 @@ function getWeather(cityName){
                  return uvResponse.json();
              })
              .then(function(uvResponse){
-                uvIndexEl.text("UV Index: " + uvResponse.current.uvi);
+                let currentUvIndex = uvResponse.current.uvi;
+                uvIndexEl.text("UV Index: " + currentUvIndex);
+                if (currentUvIndex < 2) {
+                    uvIndexEl.addClass("background-color", "green")
+                    uvIndexEl.removeClass("background-color", "orange")
+                    uvIndexEl.removeClass("background-color", "yellow")
+                    uvIndexEl.removeClass("background-color", "red")
+            
+                  } else if (currentUvIndex >= 2 && currentUvIndex < 5) {
+                    uvIndexEl.addClass("background-color", "yellow")
+                    uvIndexEl.removeClass("background-color", "green")
+                    uvIndexEl.removeClass("background-color", "orange")
+                    uvIndexEl.removeClass("background-color", "red")
+            
+                  } else if (currentUvIndex >= 5 && currentUvIndex < 8) {
+                    uvIndexEl.addClass("background-color", "orange")
+                    uvIndexEl.removeClass("background-color", "green")
+                    uvIndexEl.removeClass("background-color", "yellow")
+                    uvIndexEl.removeClass("background-color", "red")
+            
+                  } else {
+                    uvIndexEl.addClass("background-color", "red")
+                    uvIndexEl.removeClass("background-color", "green")
+                    uvIndexEl.removeClass("background-color", "orange")
+                    uvIndexEl.removeClass("background-color", "yellow")
+
+                }
                 
 
-                //remove forecast then render it
+                //Remove forecast then render it
                 let prevCardEl = document.querySelectorAll(".card-panel")
 
                 for(i = 0; i < prevCardEl.length; i++){
@@ -97,7 +123,7 @@ function getWeather(cityName){
       });
 }
 
-
+// Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
     let fiveDayCardEl = $("<div>").addClass("card-panel teal");
     let cardDate = $("<h4>").addClass("card-title");
@@ -115,6 +141,7 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
 }
 
+//Render city search history
 function renderSearchHistory() {
     searchHistoryEl.innerHTML = "";
     console.log(searchHistory);
