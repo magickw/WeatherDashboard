@@ -5,6 +5,17 @@ body {
     background-image: url(https://source.unsplash.com/random/?city);
   }
 
+#navbar {
+    min-height: 90px;
+    display: flex;
+    width: 100%;
+    background: darkslategrey;
+  }
+.currentDay {
+    color:white;
+}
+
+
 .searchBtn {
     border-right: 10px;
     padding-right: 5px;

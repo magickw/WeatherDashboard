@@ -10,56 +10,56 @@
     <title>Weather Dashboard</title>
 </head>
 <body>
+    <!--Navbar-->
     <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1 w-100 text-center">Weather Dashboard</span>
+        <span class="navbar-brand w-100 mb-0 h1 text-center">Weather Dashboard</span>
         <!--Display the current date-->
         <p id="currentDay" class="lead"></p>
     </nav>
     <div class="container">
         <div class="row">
+            <!--Left column elements-->
             <div class="col-4 bg-light">
-                <p class="search-header my-1">Search for a city</p>
+                <p class="search-bar my-1">Search for a city</p>
                 <div class="input-group mb-3">
-                    <input id="city-input" type="text" class="form-control" placeholder="Enter city name" aria-label="Enter city name">
+                    <input id="search-input" type="text" class="form-control" placeholder="Enter a city name" aria-label="Enter a city name">
                     <div class="input-group-append">
-                        <button class="btn searchBtn btn-primary" type="button">
-                            <i class="fas fa-search"></i>
+                        <button class="btn searchBtn btn-primary fas fa-search" type="button">
                         </button>
-                        <button class="btn locationBtn btn-primary" type="button">
-                            <i class="fa fa-location-arrow">My Location</i>
-                        </button>
+                        <p id="search-error-message"></p>
                     </div>
                 </div>
-                <button class="btn clearBtn btn-primary mb-3" type="button">Clear history</button>
-                <form id="history"></form>
+                <button class="btn clearBtn btn-primary mb-3" type="button">Clear History</button>
+                <form id="search-history"></form>
             </div>
+            <!--Right column elements-->
             <div class="col-8">
                 <div class="row mr-0">
                     <div class="col-12 border border-dark m-3 rounded">
                         <div class="row">
                             <div class="col-12">
-                                <span id="city-name" class="city-name align-middle"></span>
+                                <span id="searchedCity" class="searchedCity align-middle"></span>
                                 <img id="current-pic" src="placeholder" alt="">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p id="temperature"></p>
+                                <p id="current-temperature"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p id="humidity"></p>
+                                <p id="current-humidity"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <p id="wind-speed"></p>
+                                <p id="current-wind-speed"></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 d-flex">
-                                <p id="UV-index"></p>
+                                <p id="current-UV-index"></p>
                             </div>
                         </div>
                     </div>
@@ -70,11 +70,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast bg-primary text-white ml-3 mb-3 rounded"></div>
+                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
+                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
+                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
+                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
+                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
                 </div>
             </div>
         </div>
