@@ -21,11 +21,9 @@
             <div class="col-4 bg-light">
                 <p class="search-form my-1">Search for a city</p>
                 <div class="search mb-3">
-                    <input id="city-input" type="text" class="form-control" placeholder="Enter a city name" aria-label="Enter a city name">
-                    <div class="input-group-append">
+                    <input id="city-input" type="text" class="form-control" placeholder="Enter a city name">
                         <button class="btn searchBtn btn-primary fas fa-search" type="button" id="search-button">
                         </button>
-                    </div>
                 </div>
                 <button class="btn clearBtn btn-danger mb-3" type="button" id="clear-button">Clear History</button>
                 <form id="searchedCities" class="history"></form>
@@ -38,7 +36,7 @@
                             <div class="col-12">
                             <h1 class="cityName">City Name</h1>
                                 <h2 class="currentDate"></h2>
-                                <img class="weather-icon" scr="" alt=""></img>
+                                <img class="weather-icon"></img>
                             </div>
                         </div>
                         <!--Current conditions for the searched city.-->
@@ -59,7 +57,7 @@
                 <div class="col s9 offset-s3">
                     <div class="five-day">
                         <h2>5-Day Forecast</h2>
-                        <div class="forcast-cards">
+                        <div class="forcast-cards d-flex">
                         </div>
                     </div>
                 </div>

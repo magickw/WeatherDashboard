@@ -7,22 +7,21 @@ This project is to build a weather dashboard that will run in the browser and fe
 
 
 ## Roadmap
-* Step 1. <br>
+* Step 1. Lay out the basic html structure.<br>
+ This step is relatively simple.<br>
+
+* Step 2. Work on the javascript file.<br>
+  On the javascript file, at first I declares a series of variables. Add event listeners to the Search and Clear button.<br>
+* Step 3. Sign up an account with openweather.org and get the APIs weather, forcast and icons. <br>
+ This step is important. In this project, we need to use api to fetch data from the third-pay website. When the user searches, they will see the weather conditions of the searched city, including temperature, humidity, wind speed and UV index. <br>
+
+* Step 4. Creates a 5-day forcast.<br>
  <br>
 
-* Step 2. <br>
-  <br>
-* Step 3.  <br>
- <br>
 
-* Step 4. <br>
- <br>
+## Screenshot
 
-
-## Mock-Up
-
-Note: the actual results of the deployed application may be slightly different from the Demo as shown below due to the differences in CSS applied: <br>
-<img src="" alt="screenshot" />
+<img src="assets\screenshot.png" alt="screenshot" />
 
 ## Built With
 

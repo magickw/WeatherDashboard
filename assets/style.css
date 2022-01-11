@@ -12,7 +12,6 @@ body {
   }
 
 .currentDate {
-    color:rgb(10, 10, 10);
     font-size: 20px;
 }
 
@@ -23,6 +22,7 @@ body {
 .forcast-cards {
   display: flex;
   flex-direction: row;
+  font-size: 20px;
 }
 
 footer {

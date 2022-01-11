@@ -27,10 +27,7 @@ $(".searchBtn").on("click", function(event) {
     getWeather(searchInput.val());
 });
 
-//Clear button event listener
-$(".clearBtn").on('click', function () {
-    localStorage.clear();
-  })
+
 
 //Temperature conversion
 function k2F(k){
@@ -60,7 +57,7 @@ function getWeather(cityName){
           let weatherIcon = response.weather[0].icon;
           //Gets weather icons from api request
           weatherIconEl.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
-          weatherIconEl.attr("alt",response.weather[0].description);
+          weatherIconEl.attr("alt", response.weather[0].description);
           //Convert temp from deg K to deg F
           tempEl.text("Temperature: " + k2F(response.main.temp) + " °F");
           humidityEl.text("Humidity: " + response.main.humidity + "%");
@@ -121,15 +118,15 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
     let cardHumidity = $("<p>").addClass("card-text");
-    let cardSpeed = $("<p>").addClass("card-text");
+    let cardWindSpeed = $("<p>").addClass("card-text");
 
     forcastCardEl.append(fiveDayCardEl);
     cardDate.text(date);
     cardIcon.attr("src", icon);
     cardTemp.text(`Temp: ${temp} °F`);
     cardHumidity.text(`Humidity: ${humidity}%`);
-    cardSpeed.text(`Wind: ${windSpeed} MPH`);
-    fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardSpeed);
+    cardWindSpeed.text(`Wind Speed: ${windSpeed} MPH`);
+    fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
 }
 
 function renderSearchHistory() {
@@ -150,6 +147,11 @@ function renderSearchHistory() {
         }
     }
 }
+
+//Clear button event listener to clear the search history
+$(".clearBtn").on('click', function() {
+    localStorage.clear();
+  })
 
 $(document).ready(function(){
     // last searched city was loaded when page reaload
