@@ -2,7 +2,6 @@ body {
     font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1;
-    background-image: url(https://source.unsplash.com/random/?city);
   }
 
 #navbar {
@@ -11,22 +10,14 @@ body {
     width: 100%;
     background: darkslategrey;
   }
-.currentDay {
-    color:white;
+
+.current-date {
+    color:rgb(10, 10, 10);
 }
 
-
-.searchBtn {
-    border-right: 10px;
-    padding-right: 5px;
+.city-name {
+  font-size: 30px;
 }
-
-.locationBtn {
-    border-left: 10px;
-    padding-left: 5px;
-}
-
-
 
 
 footer {
