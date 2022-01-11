@@ -1,9 +1,8 @@
 //Declares global variables
-const searchBtn = $(".searchBtn");
 const searchInput = $("#city-input");
 const cityNameEl = $(".cityName");
 const currentDateEl = $(".currentDate");
-const weatherIconEl = $(".weatherIcon");
+const weatherIconEl = $(".weather-icon");
 const searchHistoryEl = $("#searchedCities");
 const tempEl = $(".temp");
 const humidityEl = $(".humidity");
@@ -16,7 +15,7 @@ let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 const apiKey = "723b345acdd52204dfb9a13e95119b61";
 
 //Search button event listener
-searchBtn.on("click", function(event) {
+$(".searchBtn").on("click", function(event) {
     event.preventDefault();
     if (searchInput.val() === "") {
         alert("Please enter a city");
@@ -27,6 +26,11 @@ searchBtn.on("click", function(event) {
     localStorage.setItem("search", JSON.stringify(searchHistory));
     getWeather(searchInput.val());
 });
+
+//Clear button event listener
+$(".clearBtn").on('click', function () {
+    localStorage.clear();
+  })
 
 //Temperature conversion
 function k2F(k){
@@ -78,6 +82,20 @@ function getWeather(cityName){
                 uvIndex.text(uvResponse.current.uvi);
                 uvIndexEl.append(uvIndex);
 
+                if (uvIndex < 2) {
+                    $('#uvIndex').css("background-color", "green")
+            
+                  } else if (uvIndex >= 2 && uvIndex < 5) {
+                    $('#uvIndex').css("background-color", "yellow")
+            
+                  } else if (uvIndex >= 5 && uvIndex < 8) {
+                    $('#uvIndex').css("background-color", "orange")
+            
+                  } else {
+                    $('#uvIndex').css("background-color", "red")
+            
+                  }
+
                 //remove forecast then render it
                 let prevCardEl = document.querySelectorAll(".card-panel")
 
@@ -99,11 +117,10 @@ function getWeather(cityName){
 
 
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    // HTML elements we will create to later
     let fiveDayCardEl = $("<div>").addClass("card-panel teal");
     let cardDate = $("<h3>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
-    let cardTemp = $("<p>").addClass("card-action");
+    let cardTemp = $("<p>").addClass("card-text");
     let cardHumidity = $("<p>").addClass("card-text");
     let cardSpeed = $("<p>").addClass("card-text");
 
@@ -121,11 +138,11 @@ function renderSearchHistory() {
     console.log(searchHistory);
     if(searchHistory.length != 0){
         for (let i=0; i<searchHistory.length; i++) {
-            const searchedCity = $("<li>");
-            searchedCity.append("<a href='#' class='collection-item center'>"+searchHistory[i]);
+            const searchedCity = $("<form>");
+            searchedCity.append("<a href='#' class='history-item center'>"+searchHistory[i]);
             searchedCity.append("<input type='hidden' id='storedData'></a>");
             let storedData = $('#storedData');
-            searchedCity.on("click",function() {
+            searchedCity.on("click", function() {
                 storedData.val(searchHistory[i]);
                 console.log(storedData.val());
                 getWeather(searchHistory[i]);
@@ -142,3 +159,4 @@ $(document).ready(function(){
         getWeather(searchHistory[searchHistory.length - 1]);
     }
 });
+

@@ -20,7 +20,7 @@
             <!--Left column elements-->
             <div class="col-4 bg-light">
                 <p class="search-form my-1">Search for a city</p>
-                <div class="input-group mb-3">
+                <div class="search mb-3">
                     <input id="city-input" type="text" class="form-control" placeholder="Enter a city name" aria-label="Enter a city name">
                     <div class="input-group-append">
                         <button class="btn searchBtn btn-primary fas fa-search" type="button" id="search-button">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <button class="btn clearBtn btn-danger mb-3" type="button" id="clear-button">Clear History</button>
-                <ul id="search-history"></ul>
+                <form id="searchedCities" class="history"></form>
             </div>
             <!--Right column elements-->
             <div class="col-8">
