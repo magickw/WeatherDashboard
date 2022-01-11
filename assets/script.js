@@ -7,7 +7,7 @@ const searchHistoryEl = $("#searchedCities");
 const tempEl = $(".temp");
 const humidityEl = $(".humidity");
 const windSpeedEl = $(".windSpeed");
-const uvIndexEl = $(".uvIndex");
+const uvIndexEl = $(".uv-Index");
 const forcastCardEl = $(".forcast-cards");
 
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
@@ -21,13 +21,15 @@ $(".searchBtn").on("click", function(event) {
         alert("Please enter a city");
         return;
     }
-    console.log("clicked button")
     searchHistory.push(searchInput.val());
     localStorage.setItem("search", JSON.stringify(searchHistory));
     getWeather(searchInput.val());
 });
 
-
+//Clear button event listener to clear the search history
+$("clearBtn").on('click', function(event) {
+    localStorage.clear();
+  })
 
 //Temperature conversion
 function k2F(k){
@@ -52,7 +54,7 @@ function getWeather(cityName){
         return response.json();
       })
       .then(function(response){
-          //Here we get the date from our data
+          //Gets the date from our data
           cityNameEl.text(response.name + " (" + getDate(response.dt) + ") ");
           let weatherIcon = response.weather[0].icon;
           //Gets weather icons from api request
@@ -73,24 +75,8 @@ function getWeather(cityName){
                  return uvResponse.json();
              })
              .then(function(uvResponse){
-                $('.badge').remove();
-                let uvIndex = $('<span>');
-                uvIndex.text(uvResponse.current.uvi);
-                uvIndexEl.append(uvIndex);
-
-                if (uvIndex < 2) {
-                    $('#uvIndex').css("background-color", "green")
-            
-                  } else if (uvIndex >= 2 && uvIndex < 5) {
-                    $('#uvIndex').css("background-color", "yellow")
-            
-                  } else if (uvIndex >= 5 && uvIndex < 8) {
-                    $('#uvIndex').css("background-color", "orange")
-            
-                  } else {
-                    $('#uvIndex').css("background-color", "red")
-            
-                  }
+                uvIndexEl.text("UV Index: " + uvResponse.current.uvi);
+                
 
                 //remove forecast then render it
                 let prevCardEl = document.querySelectorAll(".card-panel")
@@ -99,7 +85,7 @@ function getWeather(cityName){
                     $('.card-panel').remove();
                 }
 
-                //now lets get the 5 day forecast
+                //Get the 5 day forecast
                  console.log(uvResponse.daily);
                  let dataArry = uvResponse.daily;
                  for(let i = 0; i < 5; i++){
@@ -148,10 +134,7 @@ function renderSearchHistory() {
     }
 }
 
-//Clear button event listener to clear the search history
-$(".clearBtn").on('click', function() {
-    localStorage.clear();
-  })
+
 
 $(document).ready(function(){
     // last searched city was loaded when page reaload
