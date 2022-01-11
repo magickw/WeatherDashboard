@@ -21,15 +21,14 @@
             <div class="col-4 bg-light">
                 <p class="search-form my-1">Search for a city</p>
                 <div class="input-group mb-3">
-                    <input id="search-input" type="text" class="form-control" placeholder="Enter a city name" aria-label="Enter a city name">
+                    <input id="city-input" type="text" class="form-control" placeholder="Enter a city name" aria-label="Enter a city name">
                     <div class="input-group-append">
                         <button class="btn searchBtn btn-primary fas fa-search" type="button" id="search-button">
                         </button>
-                        <p id="search-error-message"></p>
                     </div>
                 </div>
                 <button class="btn clearBtn btn-danger mb-3" type="button" id="clear-button">Clear History</button>
-                <form id="search-history"></form>
+                <ul id="search-history"></ul>
             </div>
             <!--Right column elements-->
             <div class="col-8">
@@ -37,44 +36,32 @@
                     <div class="col-12 border border-dark m-3 rounded">
                         <div class="row">
                             <div class="col-12">
-                                <span id="city-name" class="city-name align-middle"></span>
-                                <p id="current-date" class="lead"></p>
-                                <img id="current-weather-icon" scr="" alt="">
+                            <h1 class="cityName">City Name</h1>
+                                <h1 class="currentDate"></h1>
+                                <img class="current-weather-icon" scr="" alt=""></img>
                             </div>
                         </div>
+                        <!--Current conditions for the searched city.-->
                         <div class="row">
-                            <div class="col-12">
-                                <p id="current-temperature"></p>
-                            </div>
+                            <p class="temp">Temperature:</p>
                         </div>
                         <div class="row">
-                            <div class="col-12">
-                                <p id="current-humidity"></p>
-                            </div>
+                            <p class="humidity">Humidity:</p>
                         </div>
                         <div class="row">
-                            <div class="col-12">
-                                <p id="current-wind-speed"></p>
-                            </div>
+                            <p class="windSpeed">Wind Speed:</p>
                         </div>
                         <div class="row">
-                            <div class="col-12 d-flex">
-                                <p id="current-UV-index"></p>
-                            </div>
+                            <p class="uvIndex">UV Index:</p>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 five-day">
                         <h3>5-Day Forecast</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
-                    <div class="col forecast-cards bg-primary text-white ml-3 mb-3 rounded"></div>
+                <div class="forcast-cards">
                 </div>
             </div>
         </div>
