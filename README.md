@@ -8,7 +8,7 @@ This project is to build a weather dashboard that will run in the browser and fe
 
 ## Roadmap
 * Step 1. Lay out the basic html structure.<br>
- This step is relatively simple.<br>
+ This step is relatively simple. After completion of html codes, I was thinking of adding unsplash.com's photos as webpage background. The users can see the photo of the city they just searched. As of 1/11/2022, I haven't received the approval notification for my APIkey application. However, I still added its radom city photo feed to the webpage as its background image.<br>
 
 * Step 2. Work on the javascript file.<br>
   On the javascript file, at first I declares a series of variables. Add event listeners to the Search and Clear button.<br>
@@ -20,8 +20,12 @@ This project is to build a weather dashboard that will run in the browser and fe
 
 
 ## Screenshot
-
+Screenshot of deployed application:<br>
+<img src="assets/screenshot.png" alt="screenshot" /><br>
+Screenshot of deployed application with a photo of a random city as its background image:<br>
 <img src="assets/screenshot.png" alt="screenshot" />
+
+
 
 ## Built With
 
