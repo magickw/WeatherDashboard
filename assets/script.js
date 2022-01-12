@@ -30,7 +30,7 @@ $(".searchBtn").on("click", function(event) {
 //Clear button event listener to clear the search history
 $(".clearBtn").on("click", function(event) {
     event.preventDefault();
-    localStorage.clear("search");
+    localStorage.removeItem("search");
     window.location.reload();
   })
 
@@ -131,8 +131,8 @@ function renderSearchHistory() {
     console.log(searchHistory);
     if(searchHistory.length != 0){
         for (let i=0; i<searchHistory.length; i++) {
-            const searchedCity = $("<form>");
-            searchedCity.append("<a href='#' class='history-item center'>"+searchHistory[i]);
+            const searchedCity = $("<div>");
+            searchedCity.append("<a href='#' class='list-group-item'>"+searchHistory[i]);
             searchedCity.append("<input type='hidden' id='storedData'></a>");
             let storedData = $('#storedData');
             searchedCity.on("click", function() {
