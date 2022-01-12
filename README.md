@@ -23,7 +23,7 @@ This project is to build a weather dashboard that will run in the browser and fe
 Screenshot of deployed application:<br>
 <img src="assets/screenshot.png" alt="screenshot" /><br>
 Screenshot of deployed application with a photo of a random city as its background image:<br>
-<img src="assets/screenshot.png" alt="screenshot" />
+<img src="assets/bg-image.png" alt="screenshot" />
 
 
 
