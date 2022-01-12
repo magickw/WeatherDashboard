@@ -29,7 +29,11 @@ body {
 .forcast-cards {
   display: flex;
   flex-direction: row;
-  font-size: 18px;
+  font-size: 15px;
+}
+
+.card-panel{
+  font-size: 15px;
 }
 
 h2{

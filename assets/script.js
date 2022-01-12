@@ -109,8 +109,8 @@ function getWeather(cityName){
 
 // Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-3 rounded");
-    let cardDate = $("<h4>").addClass("card-title");
+    let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-4 rounded");
+    let cardDate = $("<h5>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
     let cardHumidity = $("<p>").addClass("card-text");
@@ -119,7 +119,7 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     forcastCardEl.append(fiveDayCardEl);
     cardDate.text(date);
     cardIcon.attr("src", icon);
-    cardTemp.text(`Temp: ${temp} °F`);
+    cardTemp.text(`Temperature: ${temp}°F`);
     cardHumidity.text(`Humidity: ${humidity}%`);
     cardWindSpeed.text(`Wind Speed: ${windSpeed} MPH`);
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
