@@ -27,8 +27,10 @@ $(".searchBtn").on("click", function(event) {
 });
 
 //Clear button event listener to clear the search history
-$(".clearBtn").on("click", function() {
-    localStorage.clear();
+$(".clearBtn").on("click", function(event) {
+    event.preventDefault();
+    localStorage.removeItem("search");
+    location.reload();
   })
 
 //Temperature conversion
@@ -106,7 +108,7 @@ function getWeather(cityName){
 
 // Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    let fiveDayCardEl = $("<div>").addClass("card-panel justify-content-space-evenly");
+    let fiveDayCardEl = $("<div>").addClass("card-panel justify-content-space-between");
     let cardDate = $("<h4>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
