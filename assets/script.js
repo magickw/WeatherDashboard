@@ -3,7 +3,7 @@ const searchInput = $("#city-input");
 const cityNameEl = $(".cityName");
 const currentDateEl = $(".currentDate");
 const weatherIconEl = $(".weather-icon");
-const searchHistoryEl = $("#searchedCities");
+const searchHistoryEl = $(".history");
 const tempEl = $(".temp");
 const humidityEl = $(".humidity");
 const windSpeedEl = $(".windSpeed");
@@ -12,6 +12,7 @@ const forcastCardEl = $(".forcast-cards");
 
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
+//openweather.org's API key
 const apiKey = "723b345acdd52204dfb9a13e95119b61";
 
 //Search button event listener
@@ -29,8 +30,8 @@ $(".searchBtn").on("click", function(event) {
 //Clear button event listener to clear the search history
 $(".clearBtn").on("click", function(event) {
     event.preventDefault();
-    localStorage.removeItem("search");
-    location.reload();
+    localStorage.clear("search");
+    window.location.reload();
   })
 
 //Temperature conversion
@@ -85,7 +86,7 @@ function getWeather(cityName){
                         uvConditions = "uv-moderate";} else {
                             uvConditions = "uv-severe";
                         }
-            uvIndexEl.text("UV Index: " + uvResponse.current.uvi);
+            uvIndexEl.addClass(uvConditions).text("UV Index: " + uvResponse.current.uvi);
 
                 //Remove forecast then render it
                 let prevCardEl = document.querySelectorAll(".card-panel")
