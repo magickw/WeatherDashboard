@@ -32,21 +32,21 @@ body {
   font-style: normal;
   color:white;
   background-color: green;
-  padding: 2px 15px;
+  padding: 2px 5px;
   border-radius: 5px;
 }
 
 .uv-moderate {
   font-style: normal;
   background-color: yellow;
-  padding: 2px 15px;
+  padding: 2px 5px;
   border-radius: 5px;
 }
 
 .uv-severe {
   font-style: normal;
   background-color: orange;
-  padding:2px 15px;
+  padding:2px 5px;
   border-radius: 5px;
 }
 
