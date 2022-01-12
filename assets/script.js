@@ -82,7 +82,7 @@ function getWeather(cityName){
                 var uvConditions;
                 if (uvResponse.current.uvi < 3) {
                     uvConditions = "uv-favorable";}
-                    else if (uvResponse.current.uvi < 6) {
+                    else if (uvResponse.current.uvi >= 3 && uvResponse.current.uvi < 6) {
                         uvConditions = "uv-moderate";} else {
                             uvConditions = "uv-severe";
                         }
