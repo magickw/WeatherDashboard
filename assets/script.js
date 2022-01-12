@@ -109,7 +109,7 @@ function getWeather(cityName){
 
 // Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-3 p-1 rounded");
+    let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-3 rounded");
     let cardDate = $("<h4>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
     let cardTemp = $("<p>").addClass("card-text");
