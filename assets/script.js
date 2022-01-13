@@ -139,6 +139,7 @@ function renderSearchHistory() {
                 storedData.val(searchHistory[i]);
                 console.log(storedData.val());
                 getWeather(searchHistory[i]);
+                window.location.reload();
             })
             searchHistoryEl.append(searchedCity);
         }
