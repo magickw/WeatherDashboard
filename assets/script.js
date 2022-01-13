@@ -21,9 +21,11 @@ $(".searchBtn").on("click", function(event) {
     if (searchInput.val() === "") {
         alert("Please enter a city");
         return;
-    }
-    searchHistory.push(searchInput.val());
+    } else {
+        searchHistory.push(searchInput.val());
+        window.location.reload();
     localStorage.setItem("search", JSON.stringify(searchHistory));
+    };
     getWeather(searchInput.val());
 });
 
@@ -127,13 +129,11 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
 
 //Render city search history
 function renderSearchHistory() {
-    searchHistoryEl.innerHTML = "";
-    console.log(searchHistory);
     if(searchHistory.length != 0){
         for (let i=0; i<searchHistory.length; i++) {
             const searchedCity = $("<div>");
             searchedCity.append("<a href='#' class='list-group-item'>"+searchHistory[i]);
-            searchedCity.append("<input type='hidden' id='storedData'></a>");
+            searchedCity.append("<a id='storedData'></a>");
             let storedData = $('#storedData');
             searchedCity.on("click", function() {
                 storedData.val(searchHistory[i]);
