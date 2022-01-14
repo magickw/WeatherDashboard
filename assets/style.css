@@ -2,7 +2,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
-  background-image: url(https://source.unsplash.com/random/?city);
+  /*Random city photo as background image */
+  background-image: url(https://source.unsplash.com/random/1920x1080/?);
 }
 
 #navbar {
