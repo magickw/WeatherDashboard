@@ -41,7 +41,7 @@ h2{
   border-left: 10px;
   padding-left: 5px;
 }
-
+/*Used for adding classes to the uv-index text */
 .uv-favorable {
   font-style: normal;
   color:white;
