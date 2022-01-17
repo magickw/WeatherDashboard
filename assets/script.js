@@ -54,17 +54,21 @@ function k2F(k) {
 
 //Get the current date
 function getDate(date){
-    // Reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
+    // Date objects are created with the new Date() constructor. 
+    // Because the time parameter got from API is in miliseconds, this conversion is inevitable.
     let currentDate = new Date(date*1000);
     console.log(currentDate);
+    //Get the values of day, month and year
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1; // +1 because month returned by `getMonth()` method starts at 0 index!
     const year = currentDate.getFullYear();
+    //Returns the dates in format of month/day/year 
     return month + "/" + day + "/" + year;
 }
 
 //Get the weather by city name entered by the user.
 function getWeather(cityName){
+    //API query url
     let queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     fetch(queryUrl)
       .then(function(response) {
@@ -115,40 +119,55 @@ function getWeather(cityName){
 
                 //Get the 5 day forecast
                  console.log(uvResponse.daily);
+                 //Everyday's weather conditions are under the daily array
                  let dataArry = uvResponse.daily;
+                 //Loop through 5 days
                  for(let i = 0; i < 5; i++){
                      console.log(dataArry[i])
+                     //Gets the weather icon
                      let dataIcon = "https://openweathermap.org/img/wn/" + dataArry[i].weather[0].icon + "@2x.png";
+                     //Run the createForcast function to get temperatures, humidities and windspeeds for 5 days.
                      createForecast(getDate(dataArry[i].dt), dataIcon, k2F(dataArry[i].temp.day), dataArry[i].humidity, dataArry[i].wind_speed);
                  }
              });
       });
 }
 
-// Create forcast cards for 5 days
+// Uses createForecast function to create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
     // Using $('<div />') , jQuery creates the element using the native JavaScript createElement() function and use addClass() method to add bootstrap card styling.
     let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-4 rounded");
+    // Makes the date as a <h5> heading 
     let cardDate = $("<h5>").addClass("card-title");
+    // Gets the weather icon
     let cardIcon = $("<img>").addClass("weatherIcon");
+    // Creates paragraphs for temperatures, humidities and windspeeds
     let cardTemp = $("<p>").addClass("card-text");
     let cardHumidity = $("<p>").addClass("card-text");
     let cardWindSpeed = $("<p>").addClass("card-text");
 
-    forcastCardEl.append(fiveDayCardEl);
+    // Show the date and weather icon
     cardDate.text(date);
     cardIcon.attr("src", icon);
+    //Show the weather info
     cardTemp.text(`Temperature: ${temp}°F`);
     cardHumidity.text(`Humidity: ${humidity}%`);
     cardWindSpeed.text(`Wind Speed: ${windSpeed} MPH`);
+    //Use append() method to generate forcast cards
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
+    forcastCardEl.append(fiveDayCardEl);
 }
 
 //Render city search history
 function renderSearchHistory() {
+    //When the search history isn't empty
     if(searchHistory.length != 0){
+        //Loop through the search hitory
         for (let i=0; i<searchHistory.length; i++) {
+            
             const searchedCity = $("<div>");
+            console.log(searchedCity);
+            //uses the append() method to append the searched city and set some attributes to it
             searchedCity.append("<a href='#' class='list-group-item'>"+searchHistory[i]);
             searchedCity.append("<a id='storedData'></a>");
             let storedData = $('#storedData');
@@ -163,7 +182,7 @@ function renderSearchHistory() {
 }
 
 
-
+//Code inside the $(document ).ready() method will run once the page DOM is ready to execute JavaScript code.
 $(document).ready(function(){
     // last searched city was loaded when page reaload
     renderSearchHistory();
