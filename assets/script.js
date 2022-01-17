@@ -1,4 +1,4 @@
-//Declares global variables
+//Declares global variables. I declared variables with "const" rather than "var", because I watched hours of videos on Youtube, in which most of them used const, for example, https://www.youtube.com/watch?v=6trGQWzg2AI
 const searchInput = $("#city-input");
 const cityNameEl = $(".cityName");
 const currentDateEl = $(".currentDate");
@@ -10,14 +10,16 @@ const windSpeedEl = $(".windSpeed");
 const uvIndexEl = $(".uv-Index");
 const forcastCardEl = $(".forcast-cards");
 
+// Read the search history item as string then convert to JSON object
 let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
-//openweather.org's API key
+//openweather.org's API key which will be used to fetch the weather
 const apiKey = "723b345acdd52204dfb9a13e95119b61";
 
 //Search button event listener
 $(".searchBtn").on("click", function(event) {
     event.preventDefault();
+    //When the user enters nothing
     if (searchInput.val() === "") {
         //Alert the user that they need to enter a city name
         alert("Please enter a city");
@@ -25,7 +27,9 @@ $(".searchBtn").on("click", function(event) {
     } else {
         //uses the push() method to add the search inputs to the search history
         searchHistory.push(searchInput.val());
+        //Window refresh. Once the window is refreshed, the search term will show up immediately in the search history. 
         window.location.reload();
+        //Uses the localStorage.setItem() to store and JSON.stringfy the search history 
     localStorage.setItem("search", JSON.stringify(searchHistory));
     };
     //Run the following function to get weather by the user's search term
@@ -64,7 +68,7 @@ function getWeather(cityName){
         return response.json();
       })
       .then(function(response){
-          //Get the searched city's data, including the name of city and current time
+          //Get the searched city's data, including the name of city and current date
           cityNameEl.text(response.name + " (" + getDate(response.dt) + ") ");
           let weatherIcon = response.weather[0].icon;
           //Get a weather icon from api request and give the icon some attributes, including its image address
