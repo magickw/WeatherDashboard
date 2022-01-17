@@ -60,7 +60,8 @@ function getDate(date){
     console.log(currentDate);
     //Get the values of day, month and year
     const day = currentDate.getDate();
-    const month = currentDate.getMonth() + 1; // +1 because month returned by `getMonth()` method starts at 0 index!
+    // +1 because month returned by `getMonth()` method starts at 0 index!
+    const month = currentDate.getMonth() + 1; 
     const year = currentDate.getFullYear();
     //Returns the dates in format of month/day/year 
     return month + "/" + day + "/" + year;
@@ -110,9 +111,8 @@ function getWeather(cityName){
                 //linked to css by adding class to different UV conditions 
             uvIndexEl.addClass(uvConditions).text("UV Index: " + uvResponse.current.uvi);
 
-                //Remove forecast then render it
+                //Remove forecast then render it, preventing adding more forcast cards when the user keeps searching.
                 let prevCardEl = $(".card-panel")
-
                 for(i = 0; i < prevCardEl.length; i++){
                     $('.card-panel').remove();
                 }
@@ -155,6 +155,7 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     cardWindSpeed.text(`Wind Speed: ${windSpeed} MPH`);
     //Use append() method to generate forcast cards, appending the date, icon, temperature, humudity and windspeed
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
+    //Append the card panels
     forcastCardEl.append(fiveDayCardEl);
 }
 
