@@ -153,7 +153,7 @@ function createForecast(date, icon, temp, humidity, windSpeed) {
     cardTemp.text(`Temperature: ${temp}°F`);
     cardHumidity.text(`Humidity: ${humidity}%`);
     cardWindSpeed.text(`Wind Speed: ${windSpeed} MPH`);
-    //Use append() method to generate forcast cards
+    //Use append() method to generate forcast cards, appending the date, icon, temperature, humudity and windspeed
     fiveDayCardEl.append(cardDate, cardIcon, cardTemp, cardHumidity, cardWindSpeed);
     forcastCardEl.append(fiveDayCardEl);
 }
@@ -164,16 +164,18 @@ function renderSearchHistory() {
     if(searchHistory.length != 0){
         //Loop through the search hitory
         for (let i=0; i<searchHistory.length; i++) {
-            
-            const searchedCity = $("<div>");
-            console.log(searchedCity);
+            // Using $('<div />') , jQuery creates the element using the native JavaScript createElement() function
+            let searchedCity = $("<div>");
             //uses the append() method to append the searched city and set some attributes to it
             searchedCity.append("<a href='#' class='list-group-item'>"+searchHistory[i]);
             searchedCity.append("<a id='storedData'></a>");
             let storedData = $('#storedData');
+            //Click event listener
             searchedCity.on("click", function() {
+                //when a city in the search history is searched, then run the console.log()
                 storedData.val(searchHistory[i]);
                 console.log(storedData.val());
+                //Then get the clicked searched city's weather conditions
                 getWeather(searchHistory[i]);
             })
             searchHistoryEl.append(searchedCity);
@@ -184,9 +186,10 @@ function renderSearchHistory() {
 
 //Code inside the $(document ).ready() method will run once the page DOM is ready to execute JavaScript code.
 $(document).ready(function(){
-    // last searched city was loaded when page reaload
     renderSearchHistory();
+    //When the search history is not empty;
     if (searchHistory.length > 0) {
+        // last searched city was loaded when page reaload
         getWeather(searchHistory[searchHistory.length - 1]);
     }
 });
