@@ -2,7 +2,8 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
-  background-image: url(https://source.unsplash.com/random/?city);
+  /*Random city photo as background image. I chose photos in large size*/
+  background-image: url(https://source.unsplash.com/random/1920x1080/?city);
 }
 
 #navbar {
@@ -41,6 +42,7 @@ h2{
   padding-left: 5px;
 }
 
+/*Used for adding class to indicate wether the uv-index is flavorable*/
 .uv-favorable {
   font-style: normal;
   color:white;

@@ -40,6 +40,11 @@ $(".clearBtn").on("click", function(event) {
     window.location.reload();
   })
 
+//Temperature conversion when temperature unit wasn't set to imperial
+function k2F(k) {
+    return Math.floor((k - 273.15) * 1.8 + 32);
+}
+
 //Get the current date
 function getDate(date){
     // Reference https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date
@@ -53,7 +58,7 @@ function getDate(date){
 
 //Get the weather by city name entered by the user.
 function getWeather(cityName){
-    let queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=" + apiKey;
+    let queryUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
     fetch(queryUrl)
       .then(function(response) {
         return response.json();
@@ -65,7 +70,7 @@ function getWeather(cityName){
           //Get a weather icon from api request and give the icon some attributes, including its image address
           weatherIconEl.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
           weatherIconEl.attr("alt", response.weather[0].description);
-          tempEl.text("Temperature: " + response.main.temp + " °F");
+          tempEl.text("Temperature: " + k2F(response.main.temp) + " °F");
           humidityEl.text("Humidity: " + response.main.humidity + "%");
           windSpeedEl.text("Wind Speed: " + response.wind.speed + " MPH");
           //Latitude and longitude of current-city are needed in order to fetch uv index data
@@ -104,7 +109,7 @@ function getWeather(cityName){
                  for(let i = 0; i < 5; i++){
                      console.log(dataArry[i])
                      let dataIcon = "https://openweathermap.org/img/wn/" + dataArry[i].weather[0].icon + "@2x.png";
-                     createForecast(getDate(dataArry[i].dt), dataIcon, dataArry[i].temp.day, dataArry[i].humidity, dataArry[i].wind_speed);
+                     createForecast(getDate(dataArry[i].dt), dataIcon, k2F(dataArry[i].temp.day), dataArry[i].humidity, dataArry[i].wind_speed);
                  }
              });
       });
