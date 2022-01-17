@@ -1,13 +1,16 @@
-//Declares global variables. I declared variables with "const" rather than "var", because I watched hours of videos on Youtube, in which most of them used const, for example, https://www.youtube.com/watch?v=6trGQWzg2AI
+//Declares global variables. I declared variables with "const" rather than "var", because I watched hours of videos on Youtube
+//before I started to code, in which most of them used const, for example, https://www.youtube.com/watch?v=6trGQWzg2AI
 const searchInput = $("#city-input");
 const cityNameEl = $(".cityName");
+const searchHistoryEl = $(".history");
+//The following variables will be used to show the weather of the searched city.
 const currentDateEl = $(".currentDate");
 const weatherIconEl = $(".weather-icon");
-const searchHistoryEl = $(".history");
 const tempEl = $(".temp");
 const humidityEl = $(".humidity");
 const windSpeedEl = $(".windSpeed");
 const uvIndexEl = $(".uv-Index");
+//The following variable will be used to generate the forcast cards
 const forcastCardEl = $(".forcast-cards");
 
 // Read the search history item as string then convert to JSON object
@@ -92,9 +95,12 @@ function getWeather(cityName){
                 var uvConditions;
                 // Use the current.uvi parameter to recall the Current UV index
                 if (uvResponse.current.uvi < 3) {
+                    //When the uv-index <3, it's favorable
                     uvConditions = "uv-favorable";}
                     else if (uvResponse.current.uvi >= 3 && uvResponse.current.uvi < 6) {
+                         //When the 3 =< uv-index =< 6, it's moderate
                         uvConditions = "uv-moderate";} else {
+                            //When the uv-index >6, it's unfavorable
                             uvConditions = "uv-severe";
                         }
                 //linked to css by adding class to different UV conditions 
@@ -121,6 +127,7 @@ function getWeather(cityName){
 
 // Create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
+    // Using $('<div />') , jQuery creates the element using the native JavaScript createElement() function and use addClass() method to add bootstrap card styling.
     let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-4 rounded");
     let cardDate = $("<h5>").addClass("card-title");
     let cardIcon = $("<img>").addClass("weatherIcon");
