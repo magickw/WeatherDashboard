@@ -25,7 +25,8 @@ $(".searchBtn").on("click", function(event) {
     //When the user enters nothing
     if (searchInput.val() === "") {
         //Alert the user that they need to enter a city name
-        alert("Please enter a city");
+        const erroMessageEl = $(".search-error-message");
+        erroMessageEl.text("Please enter a city");
         return;
     } else {
         //uses the push() method to add the search inputs to the search history
@@ -135,7 +136,7 @@ function getWeather(cityName){
 
 // Uses createForecast function to create forcast cards for 5 days
 function createForecast(date, icon, temp, humidity, windSpeed) {
-    // Using $('<div />') , jQuery creates the element using the native JavaScript createElement() function and use addClass() method to add bootstrap card styling.
+    // Using $('<div/>') , jQuery creates the element using the native JavaScript createElement() function and use addClass() method to add bootstrap card styling.
     let fiveDayCardEl = $("<div>").addClass("card-panel col-sm-2 bg-primary text-white m-2 p-4 rounded");
     // Makes the date as a <h5> heading 
     let cardDate = $("<h5>").addClass("card-title");
