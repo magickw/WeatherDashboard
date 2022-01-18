@@ -19,6 +19,13 @@ let searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 //openweather.org's API key which will be used to fetch the weather
 const apiKey = "723b345acdd52204dfb9a13e95119b61";
 
+//Added a Enter key press event listener, for triggering the search button
+searchInput.keyup(function(event) {
+    if (event.which === 13) {
+        $(".searchBtn").click();
+    }
+});
+
 //Search button event listener
 $(".searchBtn").on("click", function(event) {
     event.preventDefault();
