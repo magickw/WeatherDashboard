@@ -6,6 +6,7 @@ const searchHistoryEl = $(".history");
 //The following variables will be used to show the weather of the searched city.
 const currentDateEl = $(".currentDate");
 const weatherIconEl = $(".weather-icon");
+const weatherDescriptionEl = $(".description");
 const tempEl = $(".temp");
 const humidityEl = $(".humidity");
 const windSpeedEl = $(".windSpeed");
@@ -90,6 +91,7 @@ function getWeather(cityName){
           //Get a weather icon from api request and give the icon some attributes, including its image address
           weatherIconEl.attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + "@2x.png");
           weatherIconEl.attr("alt", response.weather[0].description);
+          weatherDescriptionEl.text(response.weather[0].main + ", " + response.weather[0].description);
           tempEl.text("Temperature: " + k2F(response.main.temp) + " °F");
           humidityEl.text("Humidity: " + response.main.humidity + "%");
           windSpeedEl.text("Wind Speed: " + response.wind.speed + " MPH");
